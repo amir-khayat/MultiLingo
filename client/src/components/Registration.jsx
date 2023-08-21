@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = (props) => {
-    const { setSessionId } = props; 
+    const { setSessionId } = props;
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         first_name: '',
@@ -57,6 +57,13 @@ const Registration = (props) => {
             });
     };
 
+    const languageOptions = [
+        "English", "Mandarin Chinese", "Spanish", "French", "Arabic",
+        "Russian", "German", "Japanese", "Portuguese", "Hindi",
+        "Korean", "Turkish", "Italian", "Dutch", "Spanish"
+    ];
+
+
 
     return (
         <div className="container">
@@ -102,14 +109,21 @@ const Registration = (props) => {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">User Language:</label>
-                    <input
-                        type="text"
-                        className="form-control"
+                    <select
+                        className="form-select"
                         name="user_language"
                         value={formData.user_language}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="" disabled >Select a language</option>
+                        {languageOptions.map((language, index) => (
+                            <option key={index} value={language}>
+                                {language}
+                            </option>
+                        ))}
+                    </select>
                 </div>
+
                 <div className="mb-3">
                     <label className="form-label">Password:</label>
                     <input
@@ -132,6 +146,7 @@ const Registration = (props) => {
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
             </form>
+            <Link to="/login">Already have an account? Login</Link>
 
         </div>
     );

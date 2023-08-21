@@ -57,8 +57,15 @@ class Language(BaseModel):
     
     @classmethod
     def delete_language(cls, data):
-        query = "DELETE FROM languages WHERE id = %(id)s;"
-        return connectToMySQL('MultiLingo').query_db(query, data)
+        # Delete the related flashcards first
+        flashcard_query = "DELETE FROM flashcards WHERE language_id = %(id)s;"
+        connectToMySQL('MultiLingo').query_db(flashcard_query, data)
+
+        # Then delete the language
+        language_query = "DELETE FROM languages WHERE id = %(id)s;"
+        return connectToMySQL('MultiLingo').query_db(language_query, data)
+
+
     
 
 

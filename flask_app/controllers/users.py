@@ -75,7 +75,7 @@ def update_user(user_id):
     return jsonify({'success': True}), 200
 
 
-@app.route('/logout_session')
+@app.route('/logout_session', methods=['DELETE'])
 def logout(): 
     session.clear()
-    return redirect('/')
+    return jsonify({'message': 'Session logged out successfully'})

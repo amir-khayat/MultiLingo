@@ -4,14 +4,14 @@ import json
 
 class Flashcard(BaseModel):
 
-    json_fields = ['id', 'word', 'pronunciation_audio_url', 'translation', 'definition', 'ai_generated_image_url', 'saved', 'created_at', 'updated_at']
+    json_fields = ['id', 'word', 'pronunciation', 'translation', 'definition', 'image', 'saved', 'created_at', 'updated_at']
     def __init__( self , data ):
         self.id = data['id']
         self.word = data['word']
-        self.pronunciation_audio_url = data['pronunciation_audio_url']
+        self.pronunciation = data['pronunciation']
         self.translation = data['translation']
         self.definition = data['definition']
-        self.ai_generated_image_url = data['ai_generated_image_url']
+        self.image = data['image']
         self.saved = data['saved']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -65,12 +65,12 @@ class Flashcard(BaseModel):
     
     @classmethod
     def save_flashcard(cls, data):
-        query = "INSERT INTO flashcards (word, pronunciation_audio_url, translation, definition, ai_generated_image_url, saved, user_id, language_id, created_at, updated_at) VALUES (%(word)s, %(pronunciation_audio_url)s, %(translation)s, %(definition)s, %(ai_generated_image_url)s, %(saved)s, %(user_id)s, %(language_id)s, NOW(), NOW());"
+        query = "INSERT INTO flashcards (word, pronunciation, translation, definition, image, saved, user_id, language_id, created_at, updated_at) VALUES (%(word)s, %(pronunciation)s, %(translation)s, %(definition)s, %(image)s, %(saved)s, %(user_id)s, %(language_id)s, NOW(), NOW());"
         return connectToMySQL('MultiLingo').query_db(query, data)
     
     @classmethod
     def update_flashcard(cls, data):
-        query = "UPDATE flashcards SET word = %(word)s, pronunciation_audio_url = %(pronunciation_audio_url)s, translation = %(translation)s, definition = %(definition)s, ai_generated_image_url = %(ai_generated_image_url)s, saved = %(saved)s, updated_at = NOW() WHERE id = %(id)s;"
+        query = "UPDATE flashcards SET word = %(word)s, pronunciation = %(pronunciation)s, translation = %(translation)s, definition = %(definition)s, image = %(image)s, saved = %(saved)s, updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL('MultiLingo').query_db(query, data)
     
     @classmethod

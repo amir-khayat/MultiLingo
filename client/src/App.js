@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/dashboard/:id' element={<Dashboard sessionId={sessionId} />} />
+        <Route path='/dashboard/:id' element={<Dashboard sessionId={sessionId} setSessionId={setSessionId} />} />
         <Route path="/profile/:id" element={<Profile sessionId={sessionId} />} />
         <Route path="/addlanguage/:id" element={<AddLanguage sessionId={sessionId} />} />
         <Route path="/flashcard/:languageId" element={<Flashcard sessionId={sessionId} />} />

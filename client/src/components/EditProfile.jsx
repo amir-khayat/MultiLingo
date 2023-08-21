@@ -65,10 +65,16 @@ const EditProfile = (props) => {
             });
     };
 
+    const languageOptions = [
+        "English", "Mandarin Chinese", "Spanish", "French", "Arabic",
+        "Russian", "German", "Japanese", "Portuguese", "Hindi",
+        "Korean", "Turkish", "Italian", "Dutch", "Spanish"
+    ];
+
     return (
-        <div>
+        <div className="container mt-5">
             <h1>Edit Profile</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="rounded border p-4">
                 {Object.keys(errors).length > 0 && (
                     <div className="alert alert-danger">
                         {Object.values(errors).map((error, index) => (
@@ -77,44 +83,55 @@ const EditProfile = (props) => {
                     </div>
                 )}
                 <div className="mb-3">
-                    <label htmlFor="first_name">First Name:</label>
+                    <label htmlFor="first_name" className="form-label">First Name:</label>
                     <input
                         type="text"
+                        className="form-control"
                         name="first_name"
                         value={formData.first_name}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="last_name">Last Name:</label>
+                    <label htmlFor="last_name" className="form-label">Last Name:</label>
                     <input
                         type="text"
+                        className="form-control"
                         name="last_name"
                         value={formData.last_name}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email" className="form-label">Email:</label>
                     <input
                         type="email"
+                        className="form-control"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="user_language">User Language:</label>
-                    <input
-                        type="text"
+                    <label className="form-label">User Language:</label>
+                    <select
+                        className="form-select"
                         name="user_language"
                         value={formData.user_language}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="" disabled>Select a language</option>
+                        {languageOptions.map((language, index) => (
+                            <option key={index} value={language}>
+                                {language}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <button type="submit" className="btn btn-primary">Update Profile</button>
             </form>
         </div>
+
     );
 };
 

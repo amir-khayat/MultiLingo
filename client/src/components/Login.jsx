@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
     const {setSessionId} = props;
@@ -85,6 +85,7 @@ const Login = (props) => {
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>
+            <Link to="/register">Don't have an account? Register</Link>
         </div>
     );
 };
