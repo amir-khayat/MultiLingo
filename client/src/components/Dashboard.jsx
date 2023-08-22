@@ -97,11 +97,12 @@ const Dashboard = (props) => {
       <h2 className="mt-4">Your Languages:</h2>
       <ul>
         {languages.map((language) => (
-          <li key={language.id}>
+          <li key={language.id} className="d-flex align-items-center mt-2">
             <Link to={`/flashcard/${language.id}`}>
               {language.language} | {language.intensity}
             </Link>
-            <button className="btn btn-danger ms-2" onClick={() => handleDelete(language.id)}>Delete</button>          </li>
+            <button className="btn btn-danger ms-2" onClick={() => handleDelete(language.id)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
